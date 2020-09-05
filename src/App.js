@@ -18,18 +18,22 @@ class  App extends Component {
 	
 	updateTerm(e) {
 		var term = e.target.value;
-    if (term != null)
-    {
-      this.setState({term: term});
-    }
+		if (term != null)
+		{
+			this.setState({term: term});
+		}
 	}
 	
 	search() {
 		var term = this.state.term;
 		
-		var matches = _.filter(questions.default, function(datum){
-			return _.includes(datum.question, term) || _.includes(datum.shortQuestion, term)
-		});
+		var matches = [];
+		
+		if (term != "") {
+			matches = _.filter(questions.default, function(datum){
+				return _.includes(datum.question, term) || _.includes(datum.shortQuestion, term)
+			});
+		}
 		
 		this.setState({matches: matches});
 	}
