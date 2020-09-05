@@ -40,7 +40,7 @@ class  App extends Component {
 		
 		return (
 		<div className="App">
-      <TextField id="standard-basic" label="问题" onChange={this.search}/>
+      <TextField id="standard-basic" label="问题" onChange={this.updateTerm}/>
 			<button onClick={this.search}>検索</button>
 				{searchResults}
 		</div>
