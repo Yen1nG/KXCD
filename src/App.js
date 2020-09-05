@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import * as questions from './questionsJson.json';
+import TextField from '@material-ui/core/TextField';
+
 
 class  App extends Component {
 	constructor(props) {
@@ -17,7 +19,7 @@ class  App extends Component {
 		
 		return (
 		<div className="App">
-			<input type="text" onChange={this.search} />
+      <TextField id="standard-basic" label="问题" onChange={this.search}/>
 				{searchResults}
 		</div>
   );
