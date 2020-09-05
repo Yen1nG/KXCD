@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import * as questions from './questionsJson.json';
 import TextField from '@material-ui/core/TextField';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import * as _ from 'lodash';
+import './App.css';
 
 
 class  App extends Component {
@@ -14,9 +18,10 @@ class  App extends Component {
 	
 	updateTerm(e) {
 		var term = e.target.value;
-		
-		this.setState({term: term});
-		
+    if (term != null)
+    {
+      this.setState({term: term});
+    }
 	}
 	
 	search() {
@@ -34,16 +39,31 @@ class  App extends Component {
 		
 		if (this.state.matches.length > 0) {
 			searchResults = _.map(this.state.matches, function(datum){
-				return <div><h3>{datum.question}</h3><p>{datum.answer}</p></div>
+				return <Grid item xs={12} style={{textAlign: "left"}}><h3>{datum.question}</h3><p>{datum.answer}</p></Grid>
 			});
 		}
 		
 		return (
-		<div className="App">
-      <TextField id="standard-basic" label="问题" onChange={this.updateTerm}/>
-			<button onClick={this.search}>検索</button>
-				{searchResults}
-		</div>
+			<div className="App">
+      <Container fixed>
+
+        <Grid container spacing={2} className="bg">
+          <Grid item xs={12}>
+						<h1 style={{textAlign: "center"}}>QQ幻想开心辞典题库</h1>
+					</Grid>
+
+          <Grid item xs={12}>
+            <TextField className="input" inputProps={{autoComplete: 'off'}} id="outlined-basic" variant="outlined" label="请输入问题" onChange={this.updateTerm}/>
+          </Grid>
+          <Grid item xs={12}>
+            <Button style={{width: "10%"}} variant="contained" color="secondary" onClick={this.search}><b>搜索</b></Button>
+          </Grid>
+
+				  {searchResults}
+
+        </Grid>
+      </Container>
+      </div>
   );
 	}
 }

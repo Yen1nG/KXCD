@@ -1,8 +1,13 @@
-.App {
-  text-align: center;
+.bg {
+  background-image: url("/fo.jpg");
 }
 
-.App-logo {
+.App {
+  text-align: center;
+  font-family: Helvetica;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -34,5 +39,12 @@
   }
   to {
     transform: rotate(360deg);
-  }
+  } */
+/* } */
+
+.input {
+	width: 60%;
+	/* height: 2em; */
+  font-size: 50px;
+  text-align: center;
 }
