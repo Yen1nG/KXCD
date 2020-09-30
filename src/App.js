@@ -13,23 +13,33 @@ class  App extends Component {
 		super(props);
 		this.state = {matches: []};
 		this.updateTerm = this.updateTerm.bind(this);
-		this.search = this.search.bind(this);
+    this.search = this.search.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 	}
 	
 	updateTerm(e) {
-		var term = e.target.value;
-		if (term != null)
-		{
-			this.setState({term: term});
-		}
-	}
+    var term = e.target.value;
+
+		this.setState({term: term});
+  }
+  
+  handleKeyPress(e) {
+    if(e.key === 'Enter'){
+      this.search();
+    }
+  }
 	
 	search() {
-		var term = this.state.term;
-		
+    var term = this.state.term;
+
+    // if (term.length < 3)
+    // {
+    //   term = "请至少输入三个字符来进行搜索";
+    // }
+
 		var matches = [];
 		
-		if (term != "") {
+		if (term && term.length >= 3) {
 			matches = _.filter(questions.default, function(datum){
 				return _.includes(datum.question, term) || _.includes(datum.shortQuestion, term)
 			});
@@ -56,9 +66,15 @@ class  App extends Component {
 						<h1 style={{textAlign: "center"}}>QQ幻想开心辞典题库</h1>
 					</Grid>
 
-          <Grid item xs={12}>
-            <TextField className="input" inputProps={{autoComplete: 'off'}} id="outlined-basic" variant="outlined" label="请输入问题" onChange={this.updateTerm}/>
+          <Grid item xs={3}></Grid>
+
+          <Grid item xs={6}>
+            <TextField className="input" inputProps={{autoComplete: 'off'}} id="outlined-basic" variant="outlined" label="请输入问题" onKeyPress={this.handleKeyPress} onChange={this.updateTerm}/>
+            <h4 style={{textAlign: "left", margin: "0", color: "gray"}}>请至少输入三个字符来进行搜索</h4>
           </Grid>
+
+          <Grid item xs={3}></Grid>
+
           <Grid item xs={12}>
             <Button style={{width: "10%"}} variant="contained" color="secondary" onClick={this.search}><b>搜索</b></Button>
           </Grid>

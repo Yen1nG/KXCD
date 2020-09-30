@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -17,14 +17,14 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+      It will be replaced with the URL of the public folder during the build.
+      Only files inside the public folder can be referenced from the HTML.
 
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
+      Learn how to configure a non-root public URL by running npm run build.
     -->
-    <title>React App</title>
+    <title>QQ幻想开心辞典题库</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -36,8 +36,30 @@
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
+      To begin the development, run npm start or yarn start.
+      To create a production bundle, use npm run build or yarn build.
     -->
+
+
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCyhgbLlPIC0WwrdE7zdHdhfN8kiJiqxqo",
+        authDomain: "kxcd-ec4bf.firebaseapp.com",
+        databaseURL: "https://kxcd-ec4bf.firebaseio.com",
+        projectId: "kxcd-ec4bf",
+        storageBucket: "kxcd-ec4bf.appspot.com",
+        messagingSenderId: "506319449275",
+        appId: "1:506319449275:web:af07d121a595ff61c68d9e"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>

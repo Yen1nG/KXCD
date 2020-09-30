@@ -1,10 +1,11 @@
-.bg {
+/* .bg {
   background-image: url("/fo.jpg");
-}
+} */
 
 .App {
   text-align: center;
   font-family: Helvetica;
+  background-image: url("/fo.jpg");
 }
 
 /* .App-logo {
@@ -43,7 +44,7 @@
 /* } */
 
 .input {
-	width: 60%;
+	width: 100%;
 	/* height: 2em; */
   font-size: 50px;
   text-align: center;
