@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import * as _ from 'lodash';
+import * as $ from 'jquery';
 import './App.css';
 
 
@@ -30,12 +31,21 @@ class  App extends Component {
   }
 	
 	search() {
-    var term = this.state.term;
-
-    // if (term.length < 3)
-    // {
-    //   term = "请至少输入三个字符来进行搜索";
-    // }
+		var term = this.state.term;
+		var that = this;
+	
+		$.ajax({
+			type: "POST",
+			url: "http://localhost:5000/api/search",
+			data:{searchTerm: that.state.term},
+			success: function(res) {
+				console.log(res);
+			}	,
+			error: function (jqXHR, exception) { 
+			
+				debugger;
+			}
+		});
 
 		var matches = [];
 		
