@@ -33,25 +33,19 @@ class  App extends Component {
 	search() {
 		var term = this.state.term;
 		var that = this;
-	
-		$.ajax({
-			type: "POST",
-			url: "http://localhost:5000/api/search",
-			data:{searchTerm: that.state.term},
-			success: function(res) {
-				console.log(res);
-			}	,
-			error: function (jqXHR, exception) { 
-			
-				debugger;
-			}
-		});
-
-		var matches = [];
 		
+		var matches = [];
+	
 		if (term && term.length >= 3) {
-			matches = _.filter(questions.default, function(datum){
-				return _.includes(datum.question, term) || _.includes(datum.shortQuestion, term)
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:5000/api/search",
+				data:{searchTerm: that.state.term},
+				success: function(res) {
+					that.setState({matches: res});
+				},
+				error: function (jqXHR, exception) { 
+				}
 			});
 		}
 		
