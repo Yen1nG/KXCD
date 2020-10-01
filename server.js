@@ -27,7 +27,7 @@ app.post('/api/search', (req, res) => {
   
 	con.query("SELECT * FROM qa WHERE (question LIKE %" + searchTerm + "% OR shortQuestion LIKE %" + searchTerm + "%);", function (err, result, fields) {
 		if (err) throw err;
-		console.log(result);
+		res.send(result);
 	});
 });
 });
