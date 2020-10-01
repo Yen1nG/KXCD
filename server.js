@@ -16,22 +16,20 @@ var con = mysql.createConnection({
   database: "questions"
 });
 
-// con.connect(function(err) {
-  // if (err) throw err;
-  // console.log("Connected!");
-  
-	// con.query("SELECT * FROM qa where id=2", function (err, result, fields) {
-		// if (err) throw err;
-		// console.log(result);
-	// });
-// });
+
 
 app.post('/api/search', (req, res) => {
 	
 	// res.header("Access-Control-Allow-Origin", "*");
 	var searchTerm = req.body.searchTerm;
-	console.log(searchTerm);
-	res.send(searchTerm);
+	con.connect(function(err) {
+	if (err) throw err;
+  
+	con.query("SELECT * FROM qa WHERE (question LIKE %" + searchTerm + "% OR shortQuestion LIKE %" + searchTerm + "%);", function (err, result, fields) {
+		if (err) throw err;
+		console.log(result);
+	});
+});
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
