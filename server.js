@@ -16,20 +16,24 @@ var con = mysql.createConnection({
   database: "questions"
 });
 
+con.connect(function(err) {
+		if (err) throw err;
+  
+		
+	});
+
 
 
 app.post('/api/search', (req, res) => {
 	
 	// res.header("Access-Control-Allow-Origin", "*");
 	var searchTerm = req.body.searchTerm;
-	con.connect(function(err) {
-	if (err) throw err;
-  
+	
 	con.query("SELECT * FROM qa WHERE (question LIKE '%" + searchTerm + "%' OR shortQuestion LIKE '%" + searchTerm + "%');", function (err, result, fields) {
-		if (err) throw err;
-		res.send(result);
-	});
-});
+			if (err) throw err;
+			res.send(result);
+		});
+	
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
