@@ -25,7 +25,7 @@ app.post('/api/search', (req, res) => {
 	con.connect(function(err) {
 	if (err) throw err;
   
-	con.query("SELECT * FROM qa WHERE (question LIKE %" + searchTerm + "% OR shortQuestion LIKE %" + searchTerm + "%);", function (err, result, fields) {
+	con.query("SELECT * FROM qa WHERE (question LIKE '%" + searchTerm + "%' OR shortQuestion LIKE '%" + searchTerm + "%');", function (err, result, fields) {
 		if (err) throw err;
 		res.send(result);
 	});
