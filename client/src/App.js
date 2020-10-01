@@ -49,7 +49,7 @@ class  App extends Component {
 			});
 		}
 		
-		this.setState({matches: matches});
+		// this.setState({matches: matches});
 	}
 	
 	render() {
