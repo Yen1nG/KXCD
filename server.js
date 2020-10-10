@@ -3,36 +3,24 @@ var cors = require('cors');
 var app = express();
 app.use(cors());
 const bodyParser = require('body-parser');
-var mysql = require('mysql');
+// var mysql = requir('mysql');
 const port = process.env.PORT || 5000;
+const _ = require('lodash');
+const data = require('./KXCDJSON.json');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "questions"
-});
-
-con.connect(function(err) {
-		if (err) throw err;
-  
-		
-	});
-
-
-
 app.post('/api/search', (req, res) => {
-	
-	// res.header("Access-Control-Allow-Origin", "*");
 	var searchTerm = req.body.searchTerm;
 	
-	con.query("SELECT * FROM qa WHERE (question LIKE '%" + searchTerm + "%' OR shortQuestion LIKE '%" + searchTerm + "%');", function (err, result, fields) {
-			if (err) throw err;
-			res.send(result);
-		});
+	console.log(searchTerm)
+	
+	console.log(data.length);
+	
+	var matches = _.find(data, function(datum) {return _.includes(datum.question, searchTerm) || _.includes(datum.shortQuestion, searchTerm)});
+	
+	res.send(matches);
 	
 });
 
