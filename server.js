@@ -18,7 +18,7 @@ app.post('/api/search', (req, res) => {
 	
 	console.log(data.length);
 	
-	var matches = _.find(data, function(datum) {return _.includes(datum.question, searchTerm) || _.includes(datum.shortQuestion, searchTerm)});
+	var matches = _.filter(data, function(datum) {return _.includes(datum.question, searchTerm) || _.includes(datum.shortQuestion, searchTerm)});
 	
 	res.send(matches);
 	
